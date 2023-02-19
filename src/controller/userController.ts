@@ -69,7 +69,7 @@ export const Register = async (req: Request, res: Response) => {
       });
 
       //SEND OTP TO USER
-      // await onRequestOtp(otp, phone);
+      await onRequestOtp(otp, phone);
 
       //SEND EMAIL TO USER
       const html = emailHtml(otp);
