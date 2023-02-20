@@ -289,7 +289,7 @@ export const getAllUser = async (req: Request, res: Response) => {
   }
 };
 
-/**======================================================  SINGLE USER FOR ADMIN  =================================================================**/
+/**======================================================  USER PROFILE  =================================================================**/
 
 export const userProfile = async (
   req: JwtPayload,
@@ -460,7 +460,7 @@ export const resetPassword = async(req:Request, res: Response) => {
 export const updateEmailRequest = async(req:JwtPayload, res: Response) => {
   try{
     const {id} = req.user
-    const {email} = req.body
+    const {preEmail, newEmail} = req.body
   
       //JOI VALIDATION
       const validateResult = updateEmailSchema.validate(req.body, option) 
@@ -478,9 +478,15 @@ export const updateEmailRequest = async(req:JwtPayload, res: Response) => {
       })
     }
 
+    if(User.email !== preEmail){
+      return res.status(400).json({
+        Error:"Kindly provide a correct current email"
+      })
+    }
+
     //SEND EMAIL TO USER
-    const html = updateEmaillHtml(email);
-    await mailsent(FromAdminMail, email, updateEmailSubject, html);
+    const html = updateEmaillHtml(newEmail);
+    await mailsent(FromAdminMail, newEmail, updateEmailSubject, html);
 
   return res.status(200).json({
     Message:"Verification link has been sent to your email address",
@@ -527,7 +533,7 @@ export const updateEmail = async(req:JwtPayload, res: Response) => {
 export const updatePasswordRequest = async(req:JwtPayload, res: Response) => {
   try{
     const {id} = req.user
-    const {password} = req.body
+    const {prePassword, newPassword} = req.body
   
       //JOI VALIDATION
       const validateResult = resetPasswordSchema.validate(req.body, option) 
@@ -544,9 +550,22 @@ export const updatePasswordRequest = async(req:JwtPayload, res: Response) => {
         Error:"Kindly login"
       })
     }
+
+    let validation = await validatePassword(
+      prePassword,
+      User.password,
+      User.salt
+    );
+
+    if(!validation){
+      return res.status(400).json({
+        Error:"Kindly provide a correct current password"
+      })
+    }
+
     const email = User.email
     //SEND EMAIL TO USER
-    const html = updatePasswordlHtml(password);
+    const html = updatePasswordlHtml(newPassword);
     await mailsent(FromAdminMail, email, updatePasswordSubject, html);
 
   return res.status(200).json({

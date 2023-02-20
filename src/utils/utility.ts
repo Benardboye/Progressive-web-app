@@ -88,49 +88,18 @@ export const forgotPasswordSchema = Joi.object().keys({
   email: Joi.string().required()
 });
 
-/**======================================================   RESET PASSWORD   =================================================================**/
+/**======================================================    PASSWORD UPDATE   =================================================================**/
 
 export const resetPasswordSchema = Joi.object().keys({
-  password: Joi.string().required().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")), //Joi.string().(/[a-zA-Z0-9]{6,30}/),
+  prePassword: Joi.string().required().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")), //Joi.string().(/[a-zA-Z0-9]{6,30}/),
+  newPassword: Joi.string().required().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
 });
 
-/**======================================================   RESET PASSWORD   =================================================================**/
+/**======================================================   EMAIL UPDATE   =================================================================**/
 
 export const updateEmailSchema = Joi.object().keys({
-  email: Joi.string(),
+  preEmail: Joi.string(),
+  newEmail:Joi.string(),
 });
 
 
-/**======================================================   ADMIN SCHEMA   =================================================================**/
-
-export const adminSchema = Joi.object().keys({
-  email: Joi.string().required(),
-  phone: Joi.string().required(),
-  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")), //Joi.string().(/[a-zA-Z0-9]{6,30}/),
-  firstName: Joi.string().required(),
-  lastName: Joi.string().required(),
-  address: Joi.string().required(),
-});
-
-/**======================================================   VENDOR SCHEMA   =================================================================**/
-
-export const vendorSchema = Joi.object().keys({
-  email: Joi.string().required(),
-  phone: Joi.string().required(),
-  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")), //Joi.string().(/[a-zA-Z0-9]{6,30}/),
-  name: Joi.string().required(),
-  restaurantName: Joi.string().required(),
-  address: Joi.string().required(),
-  pinCode: Joi.string().required(),
-});
-
-
-/**======================================================    VENDOR PROFILE UPDATE SCHEMA   =================================================================**/
-
-export const updateVendorSchema = Joi.object().keys({
-  name: Joi.string(),
-  phone: Joi.string(),
-  address: Joi.string(),
-  coverImgae: Joi.string(),
-  restaurantName: Joi.string()
-});
