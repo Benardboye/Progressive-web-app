@@ -16,7 +16,7 @@ import {
   updateSchema,
   forgotPasswordSchema,
   forgotPasswordmailHtml,
-  resetPasswordSchema, updateEmaillHtml, updateEmailSchema, updatePasswordlHtml
+  resetPasswordSchema, updateEmaillHtml, updateEmailSchema, updatePasswordlHtml, updatePasswordSchema
 } from "../utils";
 import { UserAtrributes, UserInstance } from "../model/userModel";
 import { v4 as uuidv4 } from "uuid";
@@ -536,7 +536,7 @@ export const updatePasswordRequest = async(req:JwtPayload, res: Response) => {
     const {prePassword, newPassword} = req.body
   
       //JOI VALIDATION
-      const validateResult = resetPasswordSchema.validate(req.body, option) 
+      const validateResult = updatePasswordSchema.validate(req.body, option) 
       if (validateResult.error) {
         return res
           .status(400)

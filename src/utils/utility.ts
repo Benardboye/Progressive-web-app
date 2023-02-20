@@ -88,12 +88,19 @@ export const forgotPasswordSchema = Joi.object().keys({
   email: Joi.string().required()
 });
 
-/**======================================================    PASSWORD UPDATE   =================================================================**/
+/**======================================================    PASSWORD RESET   =================================================================**/
 
 export const resetPasswordSchema = Joi.object().keys({
+  password: Joi.string().required().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")), //Joi.string().(/[a-zA-Z0-9]{6,30}/),
+});
+
+/**======================================================    PASSWORD UPDATE   =================================================================**/
+
+export const updatePasswordSchema = Joi.object().keys({
   prePassword: Joi.string().required().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")), //Joi.string().(/[a-zA-Z0-9]{6,30}/),
   newPassword: Joi.string().required().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
 });
+
 
 /**======================================================   EMAIL UPDATE   =================================================================**/
 
