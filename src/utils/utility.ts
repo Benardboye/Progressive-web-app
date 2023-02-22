@@ -97,16 +97,22 @@ export const resetPasswordSchema = Joi.object().keys({
 /**======================================================    PASSWORD UPDATE   =================================================================**/
 
 export const updatePasswordSchema = Joi.object().keys({
-  prePassword: Joi.string().required().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")), //Joi.string().(/[a-zA-Z0-9]{6,30}/),
-  newPassword: Joi.string().required().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
+  prePassword: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")), //Joi.string().(/[a-zA-Z0-9]{6,30}/),
+  newPassword: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
 });
-
 
 /**======================================================   EMAIL UPDATE   =================================================================**/
 
 export const updateEmailSchema = Joi.object().keys({
   preEmail: Joi.string(),
   newEmail:Joi.string(),
+});
+
+/**======================================================   CREATE LIKE   =================================================================**/
+
+export const createLikeSchema = Joi.object().keys({
+  title: Joi.string().required(),
+  url:Joi.string().required()
 });
 
 

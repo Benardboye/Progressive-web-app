@@ -226,7 +226,7 @@ export const updateEmaillHtml = (email:string):string => {
       <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
         Kindly click the following link for your email address verification.
       </p>
-      <a href="http://localhost:3001/api/email-verification/${email}" style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Verify Email</a>
+      <a href="http://localhost:3000/email-verification/${email}" style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Verify Email</a>
     </td>
   </tr>
   <tr>
@@ -284,7 +284,7 @@ export const updatePasswordlHtml = (password:string):string => {
       <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
         Kindly click the following link for your password verification.
       </p>
-      <a href="http://localhost:3001/api/email-verification/${password}" style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Verify Password</a>
+      <a href="http://localhost:3000/password-verification/${password}" style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Verify Password</a>
     </td>
   </tr>
   <tr>

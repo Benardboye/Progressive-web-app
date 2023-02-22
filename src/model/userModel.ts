@@ -1,5 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { db } from "../config/indexDB";
+import {LikeInstance} from "./likesModel"
 
 export interface UserAtrributes {
   id: string;
@@ -126,3 +127,8 @@ UserInstance.init(
     tableName:'user'
 }
 );
+
+
+UserInstance.hasMany(LikeInstance, {foreignKey: "userId", as: "like"})
+
+LikeInstance.belongsTo(UserInstance, {foreignKey:"userId", as: "user" })

@@ -4,37 +4,20 @@ import cookieParser from "cookie-parser";
 import colors from "colors";
 import log from "./utils/logger";
 import userRouter from "./routes/userRoute";
-// import indexRouter from "./routes/indexRoute";
-// import adminRouter from "./routes/adminRoute";
-// import VendorRouter from "./routes/vendorRoute"
+import likeRoute from "./routes/likeRoute";
 import { db } from "./config/indexDB";
 import cors from "cors"
 import dotenv from "dotenv"
 dotenv.config()
 
-//Sequulize conncetion
+//Sequalize conncetion
 db.sync().then(() => {
     log.info('Db connected succesfully')
 }).catch(err => {
     log.error(err)
 })
 
-        // OR
 
-// const dbConnect = async () => {
-//   try {
-//     let data = await db.sync;
-//     if (!data) {
-//       log.error("Error connecting");
-//     } else {
-//       log.info("Db connected succesfully");
-//     }
-//   } catch (err) {
-//     log.error;
-//   }
-// };
-
-// dbConnect()
 
 const app = express();
 
@@ -46,17 +29,13 @@ app.use(cookieParser());
 
 
 //ROUTER
-// app.use("/api/admins", adminRouter);
+app.use("/api/likes", likeRoute);
 app.use("/api/user", userRouter);
-// app.use("/api/vendors", VendorRouter);
-// app.use("/", indexRouter);
+
 
 const port = 3001;
 
-// app.get('/', (req:Request, res:Response) => {
-//     res.status(200).json({message: 'Welcome to greatness'}
-//     )
-// })
+
 
 app.listen(port, () => {
   log.info(`Server is listening at port: ${port}`);
